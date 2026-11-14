@@ -1,0 +1,16 @@
+# Deploy gratis ke Render: https://render.com  (New > Blueprint > pilih repo GitHub ini)
+services:
+  - type: web
+    name: kostflow
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    healthCheckPath: /healthz
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.14.3
+      - key: STORAGE_SECRET
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false   # diisi manual di dashboard Render (jangan ditulis di sini / GitHub)
