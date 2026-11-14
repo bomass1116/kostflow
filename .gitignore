@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.env
+data/kostflow.db
+data/uploads/*
+!data/uploads/.gitkeep
+venv/
+.venv/
+.nicegui/
+data/.secret
