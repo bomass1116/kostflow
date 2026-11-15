@@ -93,22 +93,22 @@ flowchart LR
 ## Tampilan Aplikasi
 
 ### Pemilik: Laporan Kost
-![Dasbor Pemilik](docs/screenshots/pemilik.jpeg)
+![Dasbor Pemilik](pemilik.jpeg)
 
 Ringkasan okupansi, pemasukan dan pengeluaran bulan ini, laba bersih, tagihan belum lunas, serta daftar hal yang perlu ditindaklanjuti.
 
 ### Penghuni: Beranda & Tagihan
-![Beranda Penghuni](docs/screenshots/penghuni.jpeg)
+![Beranda Penghuni](penghuni.jpeg)
 
 Penghuni melihat sewa per bulan, tagihan aktif, sisa masa kontrak, dan ajuan yang sedang berjalan.
 
 ### Calon Penghuni: Pilih Kamar
-![Pilih Kamar](docs/screenshots/calon-penghuni.png)
+![Pilih Kamar](calon-penghuni.png)
 
 Calon penghuni memilih kamar yang tersedia, lalu mengunggah KTP dan bukti deposit.
 
 ### Tampilan di HP
-<img src="docs/screenshots/mobile.jpeg" alt="Tampilan HP" width="300" />
+<img src="mobile.jpeg" alt="Tampilan HP" width="300" />
 
 Halaman depan menyesuaikan layar HP.
 
