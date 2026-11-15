@@ -88,6 +88,6 @@ ui.run(
     port=int(os.environ.get('PORT', 8080)),
     storage_secret=storage_secret(),
     reload=False,
-    show=False,
+    show=True,
     favicon=str(BASE_DIR / 'app' / 'static' / 'logo.svg'),
 )
