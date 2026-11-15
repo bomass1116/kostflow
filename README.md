@@ -44,17 +44,20 @@ Banyak pemilik kost masih mengelola usahanya secara manual: pendaftaran lewat ch
 Aplikasi memiliki **tiga peran pengguna** dengan tampilan masing-masing, ditambah **billing engine** yang berjalan otomatis.
 
 ### Calon Penghuni
+
 - Melihat katalog kamar publik (tipe, lantai, ukuran, harga, fasilitas). Kamar yang sudah terisi ditandai abu-abu dengan label **SOLD**.
 - Mendaftar akun, lalu memesan kamar dengan mengunggah KTP dan bukti deposit.
 - Memantau status reservasi: menunggu, disetujui, atau ditolak (beserta alasannya).
 
 ### Penghuni
+
 - Melihat tagihan sewa dan mengunggah bukti pembayaran.
 - Mengajukan **keluhan** atau **permintaan layanan** dengan foto, lalu memantau statusnya dan memberi rating setelah selesai.
 - Melihat riwayat pembayaran dan kuitansi.
 - Menerima notifikasi pengingat tagihan dan kontrak.
 
 ### Pemilik
+
 - **Laporan**: okupansi, arus kas, tunggakan, rating layanan, dan ekspor CSV.
 - **Reservasi**: menyetujui atau menolak pendaftar. Jika disetujui, akun otomatis menjadi penghuni dan kamar berstatus `Terisi`.
 - **Pembayaran**: memverifikasi bukti transfer (valid/tolak), yang otomatis tercatat di buku kas.
@@ -64,14 +67,15 @@ Aplikasi memiliki **tiga peran pengguna** dengan tampilan masing-masing, ditamba
 - **Buku kas**: mencatat pemasukan dan pengeluaran.
 
 ### Billing Engine Otomatis
+
 Berjalan di latar belakang setiap jam (dan bisa dipicu manual oleh pemilik):
 
-| Proses | Perilaku |
-|---|---|
-| Penerbitan tagihan | Tagihan sewa terbit otomatis **7 hari sebelum jatuh tempo** |
-| Pengingat tagihan | Notifikasi ke penghuni saat jatuh tempo ≤ 3 hari atau sudah terlambat |
-| Pengingat kontrak | Notifikasi ke penghuni dan pemilik **30 hari sebelum kontrak habis** |
-| Penutupan kontrak | Kontrak yang habis ditutup otomatis, kamar kembali `Tersedia` |
+| Proses             | Perilaku                                                              |
+| ------------------ | --------------------------------------------------------------------- |
+| Penerbitan tagihan | Tagihan sewa terbit otomatis **7 hari sebelum jatuh tempo**           |
+| Pengingat tagihan  | Notifikasi ke penghuni saat jatuh tempo ≤ 3 hari atau sudah terlambat |
+| Pengingat kontrak  | Notifikasi ke penghuni dan pemilik **30 hari sebelum kontrak habis**  |
+| Penutupan kontrak  | Kontrak yang habis ditutup otomatis, kamar kembali `Tersedia`         |
 
 ### Alur Siklus Hidup Penghuni
 
@@ -93,22 +97,26 @@ flowchart LR
 ## Tampilan Aplikasi
 
 ### Pemilik: Laporan Kost
-![Dasbor Pemilik](docs/screenshots/pemilik.jpeg)
+
+![Dasbor Pemilik](pemilik.jpeg)
 
 Ringkasan okupansi, pemasukan dan pengeluaran bulan ini, laba bersih, tagihan belum lunas, serta daftar hal yang perlu ditindaklanjuti.
 
 ### Penghuni: Beranda & Tagihan
-![Beranda Penghuni](docs/screenshots/penghuni.jpeg)
+
+![Beranda Penghuni](penghuni.jpeg)
 
 Penghuni melihat sewa per bulan, tagihan aktif, sisa masa kontrak, dan ajuan yang sedang berjalan.
 
 ### Calon Penghuni: Pilih Kamar
-![Pilih Kamar](docs/screenshots/calon-penghuni.png)
+
+![Pilih Kamar](calon-penghuni.png)
 
 Calon penghuni memilih kamar yang tersedia, lalu mengunggah KTP dan bukti deposit.
 
 ### Tampilan di HP
-<img src="docs/screenshots/mobile.jpeg" alt="Tampilan HP" width="300" />
+
+<img src="mobile.jpeg" alt="Tampilan HP" width="300" />
 
 Halaman depan menyesuaikan layar HP.
 
@@ -116,19 +124,20 @@ Aplikasi menyediakan **5 tema warna** (Homie, Malam, Hutan, Samudra, Sakura), ma
 
 ## Teknologi yang Digunakan
 
-| Bagian | Teknologi |
-|---|---|
-| Bahasa | Python |
-| Framework UI & server | [NiceGUI](https://nicegui.io) (berbasis FastAPI) |
-| Database utama | Supabase (PostgreSQL) lewat `psycopg` |
-| Database cadangan | SQLite (otomatis dipakai jika `DATABASE_URL` kosong) |
-| Konfigurasi | `python-dotenv` |
-| Pengujian | `unittest` bawaan Python |
-| Hosting | Render (opsional, lewat `render.yaml`) |
+| Bagian                | Teknologi                                            |
+| --------------------- | ---------------------------------------------------- |
+| Bahasa                | Python                                               |
+| Framework UI & server | [NiceGUI](https://nicegui.io) (berbasis FastAPI)     |
+| Database utama        | Supabase (PostgreSQL) lewat `psycopg`                |
+| Database cadangan     | SQLite (otomatis dipakai jika `DATABASE_URL` kosong) |
+| Konfigurasi           | `python-dotenv`                                      |
+| Pengujian             | `unittest` bawaan Python                             |
+| Hosting               | Render (opsional, lewat `render.yaml`)               |
 
 ## Cara Menjalankan
 
 ### Prasyarat
+
 - Python 3.10 atau lebih baru
 - (Opsional) Akun [Supabase](https://supabase.com) untuk database PostgreSQL. Tanpa ini, aplikasi tetap jalan memakai SQLite lokal.
 
@@ -149,8 +158,8 @@ Buka **http://localhost:8080**. Saat pertama kali jalan, data kamar dan akun dem
 
 ### Opsi 2: Dengan Supabase (PostgreSQL)
 
-1. **Buat tabel.** Di Supabase, buka *SQL Editor* → *New query*, tempel seluruh isi `supabase_schema.sql`, lalu *Run*. Ini membuat 10 tabel beserta aturan RLS.
-2. **Ambil connection string.** Klik *Connect* di Supabase → tab *Session pooler* → salin URI-nya.
+1. **Buat tabel.** Di Supabase, buka _SQL Editor_ → _New query_, tempel seluruh isi `supabase_schema.sql`, lalu _Run_. Ini membuat 10 tabel beserta aturan RLS.
+2. **Ambil connection string.** Klik _Connect_ di Supabase → tab _Session pooler_ → salin URI-nya.
 3. **Buat file `.env`** di folder utama proyek:
    ```env
    DATABASE_URL=postgresql://USER:PASSWORD@HOST:5432/postgres
@@ -166,22 +175,22 @@ TRUNCATE users, settings, rooms, reservations, contracts, invoices, ledger, tick
 
 ### Variabel Lingkungan
 
-| Variabel | Fungsi | Wajib? |
-|---|---|---|
-| `DATABASE_URL` | Koneksi Supabase/PostgreSQL | Hanya untuk mode Supabase |
-| `PORT` | Port server (default `8080`) | Tidak |
-| `STORAGE_SECRET` | Kunci sesi. Jika kosong, dibuat acak dan disimpan di `data/.secret` | Tidak |
-| `KOSTFLOW_DATA` | Lokasi folder data/upload (default `./data`) | Tidak |
+| Variabel         | Fungsi                                                              | Wajib?                    |
+| ---------------- | ------------------------------------------------------------------- | ------------------------- |
+| `DATABASE_URL`   | Koneksi Supabase/PostgreSQL                                         | Hanya untuk mode Supabase |
+| `PORT`           | Port server (default `8080`)                                        | Tidak                     |
+| `STORAGE_SECRET` | Kunci sesi. Jika kosong, dibuat acak dan disimpan di `data/.secret` | Tidak                     |
+| `KOSTFLOW_DATA`  | Lokasi folder data/upload (default `./data`)                        | Tidak                     |
 
 ## Akun Demo
 
-| Peran | Username | Password |
-|---|---|---|
-| Pemilik | `pemilik` | `pemilik123` |
-| Penghuni | `penghuni` | `penghuni123` |
-| Calon penghuni | Daftar sendiri lewat tab **Daftar** | - |
+| Peran          | Username                            | Password      |
+| -------------- | ----------------------------------- | ------------- |
+| Pemilik        | `pemilik`                           | `pemilik123`  |
+| Penghuni       | `penghuni`                          | `penghuni123` |
+| Calon penghuni | Daftar sendiri lewat tab **Daftar** | -             |
 
-> ⚠️ Akun ini hanya untuk demo. **Ganti password** lewat menu avatar → *Ganti password* sebelum aplikasi dipakai sungguhan.
+> ⚠️ Akun ini hanya untuk demo. **Ganti password** lewat menu avatar → _Ganti password_ sebelum aplikasi dipakai sungguhan.
 
 Data awal berisi 8 kamar contoh (tipe Standard, Deluxe, Premium; harga Rp900.000 sampai Rp1.900.000 per bulan).
 
@@ -222,7 +231,7 @@ Logika bisnis sengaja dipisahkan di `services.py`, terpisah dari tampilan (`page
 - **Validasi upload.** Hanya JPG, PNG, WEBP, GIF, dan PDF dengan ukuran maksimal 5 MB. Isi file dicek sesuai ekstensinya, dan SVG/HTML ditolak.
 - **Pembatasan login.** Akun dikunci sementara setelah 5 kali salah password dalam 5 menit.
 - **Perlindungan aksi ganda.** Klik dua kali atau dua tab sekaligus tidak menghasilkan data ganda, karena reservasi, verifikasi pembayaran, dan tiket memeriksa status terakhir.
-- **Ekspor CSV aman** dari *CSV injection*.
+- **Ekspor CSV aman** dari _CSV injection_.
 - **Rahasia tidak masuk repo.** `.env`, `data/.secret`, dan database lokal sudah masuk `.gitignore`.
 
 ## Pengujian
@@ -255,10 +264,10 @@ Endpoint `/healthz` tersedia untuk layanan ping (UptimeRobot, cron-job.org) agar
 
 Dibuat oleh tim yang beranggotakan tiga orang:
 
-| Nama | NIM |
-|---|---|
-| Adam Richie Wijaya | 52250064 |
+| Nama                            | NIM      |
+| ------------------------------- | -------- |
+| Adam Richie Wijaya              | 52250064 |
 | Boma Satrio Wicaksono Dewantoro | 52250061 |
-| Syafif Azmi Lontoh | 52250060 |
+| Syafif Azmi Lontoh              | 52250060 |
 
 Proyek untuk **Sains Data Industri**.
